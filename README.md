@@ -44,6 +44,7 @@ The Power BI dashboard has two pages:
 
 <img width="1165" height="650" alt="Screenshot 2026-07-28 184243" src="https://github.com/user-attachments/assets/0b2b892c-5f0f-415e-9218-cc5f96b05772" />
 
+
    
 2. **High-Risk Transactions** — a filtered, drillable table of the flagged high-risk segment
 
