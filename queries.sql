@@ -1,24 +1,25 @@
-/*SELECT Payment_Method,
+--Query 1 : Payment method
+SELECT Payment_Method,
        COUNT(*) AS total_transactions,
        SUM(Is_Fraudulent) AS fraud_count,
        ROUND(SUM(Is_Fraudulent)*100.0/COUNT(*), 2) AS fraud_rate_pct
 FROM transactions
 GROUP BY Payment_Method
-ORDER BY fraud_rate_pct DESC;*/
+ORDER BY fraud_rate_pct DESC;
 
 
-
-/*SELECT Product_Category,
+--Query 2 : Product Category
+SELECT Product_Category,
        COUNT(*) AS total_transactions,
        SUM(Is_Fraudulent) AS fraud_count,
        ROUND(SUM(Is_Fraudulent)*100.0/COUNT(*), 2) AS fraud_rate_pct
 FROM transactions
 GROUP BY Product_Category
-ORDER BY fraud_rate_pct DESC;*/
+ORDER BY fraud_rate_pct DESC;
 
 
-
-/*SELECT 
+--Query 3 : Account Age
+SELECT 
     CASE 
         WHEN Account_Age_Days <= 30 THEN '0-30 days (New)'
         WHEN Account_Age_Days <= 90 THEN '31-90 days'
@@ -31,10 +32,10 @@ ORDER BY fraud_rate_pct DESC;*/
     ROUND(SUM(Is_Fraudulent)*100.0/COUNT(*), 2) AS fraud_rate_pct
 FROM transactions
 GROUP BY account_age_bucket
-ORDER BY MIN(Account_Age_Days);*/
+ORDER BY MIN(Account_Age_Days);
 
 
-/*
+--Query 4 : Order Value
 SELECT 
     CASE 
         WHEN Transaction_Amount <= 50 THEN '0-50'
@@ -49,11 +50,11 @@ SELECT
     ROUND(AVG(Transaction_Amount), 2) AS avg_amount
 FROM transactions
 GROUP BY amount_bucket
-ORDER BY MIN(Transaction_Amount);*/
+ORDER BY MIN(Transaction_Amount);
 
 
--- Query 5: Combined Risk Segment (New Account + High Order Value)
-/*SELECT 
+--Query 5: Combined Risk Segment (New Account + High Order Value)
+SELECT 
     CASE 
         WHEN Account_Age_Days <= 30 AND Transaction_Amount > 500 THEN 'New Account + High Value (High Risk)'
         ELSE 'All Other Transactions'
@@ -62,21 +63,21 @@ ORDER BY MIN(Transaction_Amount);*/
     SUM(Is_Fraudulent) AS fraud_count,
     ROUND(SUM(Is_Fraudulent)*100.0/COUNT(*), 2) AS fraud_rate_pct
 FROM transactions
-GROUP BY risk_segment;*/
+GROUP BY risk_segment;
 
 
-
-/*SELECT 
+--Query 6 : On-Duty Hours
+SELECT 
     HOUR(Transaction_Date_Clean) AS transaction_hour,
     COUNT(*) AS total_transactions,
     SUM(Is_Fraudulent) AS fraud_count,
     ROUND(SUM(Is_Fraudulent)*100.0/COUNT(*), 2) AS fraud_rate_pct
 FROM transactions
 GROUP BY HOUR(Transaction_Date_Clean)
-ORDER BY transaction_hour;*/
+ORDER BY transaction_hour;
 
 
-
+--Query 7 : Device used
 SELECT Device_Used,
        COUNT(*) AS total_transactions,
        SUM(Is_Fraudulent) AS fraud_count,
